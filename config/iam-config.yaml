@@ -1,0 +1,72 @@
+policySets:
+  - deploymentTargets:
+      organizationalUnits:
+        - Root
+    policies:
+      - name: Default-Boundary-Policy
+        policy: iam-policies/boundary-policy.json
+  - deploymentTargets:
+      accounts:
+        - Management
+    policies:
+      - name: IAM-User-Boundary-Policy
+        policy: iam-policies/iam-user-boundary-policy.json
+roleSets:
+  - deploymentTargets:
+      organizationalUnits:
+        - Root
+    roles:
+      - name: EC2-Default-SSM-AD-Role
+        instanceProfile: true
+        assumedBy:
+          - type: service
+            principal: ec2.amazonaws.com
+        policies:
+          awsManaged:
+            - AmazonSSMManagedInstanceCore
+            - AmazonSSMDirectoryServiceAccess
+            - CloudWatchAgentServerPolicy
+        boundaryPolicy: Default-Boundary-Policy
+      # This role is utilized by the Backup Plans defined in global-config.yaml
+      # We create this role in every account where we plan to have Backup Plans
+      # and Backup Vaults
+      - name: Backup-Role
+        assumedBy:
+          - type: service
+            principal: backup.amazonaws.com
+        policies:
+          awsManaged:
+            - service-role/AWSBackupServiceRolePolicyForBackup
+            - service-role/AWSBackupServiceRolePolicyForRestores
+        boundaryPolicy: Default-Boundary-Policy
+      # This role is utilized by the Budgets Config defined in global-config.yaml
+      # We create this role in every account where we plan to have AWS Budgets
+      # A service linked role is not available for AWS Budgets
+      - name: Budgets-Role
+        assumedBy:
+          - type: service
+            principal: budgets.amazonaws.com
+        policies:
+          awsManaged:
+            - AWSBudgetsActionsWithAWSResourceControlAccess
+        boundaryPolicy: Default-Boundary-Policy
+groupSets:
+  - deploymentTargets:
+      organizationalUnits:
+        - Root
+    groups:
+      - name: BreakGlassAdministrators
+        policies:
+          awsManaged:
+            - AdministratorAccess
+userSets:
+  - deploymentTargets:
+      accounts:
+        - Management
+    users:
+      - username: breakGlassUser01
+        group: BreakGlassAdministrators
+        boundaryPolicy: IAM-User-Boundary-Policy
+      - username: breakGlassUser02
+        group: BreakGlassAdministrators
+        boundaryPolicy: IAM-User-Boundary-Policy
