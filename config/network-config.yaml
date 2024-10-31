@@ -1,0 +1,431 @@
+###################################################################################
+# For additional configurable services, features, and property descriptions,      #
+# please review our network configuration reference in our README.md:             #
+# https://github.com/awslabs/landing-zone-accelerator-on-aws/blob/main/README.md  #
+###################################################################################
+homeRegion: &HOME_REGION us-east-1
+#####################################
+# Delete default VPCs-- use this    #
+# object to delete default VPCs in  #
+# any non-excluded accounts         #
+#####################################
+defaultVpc:
+  delete: true
+  excludeAccounts: []
+
+#####################################
+# Transit Gateways-- use this object #
+# to deploy transit gateways         #
+#####################################
+transitGateways:
+  - name: Network-Main
+    account: Network-Prod
+    region: {{AcceleratorHomeRegion}}
+    shareTargets:
+      organizationalUnits:
+        - Infrastructure/Infra-Prod
+        - HIS/HIS-Non-Prod
+        - EIS/EIS-Prod
+    asn: 65521
+    dnsSupport: enable
+    vpnEcmpSupport: enable
+    defaultRouteTableAssociation: disable
+    defaultRouteTablePropagation: disable
+    autoAcceptSharingAttachments: enable
+    routeTables:
+      - name: Network-Main-Core
+        routes: []
+      - name: Network-Main-Segregated
+        routes:
+          - destinationCidrBlock: 0.0.0.0/0
+            attachment:
+              vpcName: Network-Inspection
+              account: Network-Prod
+      - name: Network-Main-Shared
+        routes: []
+      - name: Network-Main-Standalone
+        routes: []
+
+#####################################
+# Endpoint policies -- use this     #
+# object to define standard policies #
+# for VPC endpoints                 #
+#####################################
+endpointPolicies:
+  - name: Default
+    document: vpc-endpoint-policies/default.json
+  - name: Ec2
+    document: vpc-endpoint-policies/ec2.json
+
+#####################################
+# VPCs-- use this object to deploy  #
+# a VPC in a single account and     #
+# region.                           #
+#####################################
+vpcs:
+  - name: Network-Endpoints
+    account: Network-Prod
+    region: {{AcceleratorHomeRegion}}
+    cidrs:
+      - 10.1.0.0/22
+    defaultSecurityGroupRulesDeletion: true
+    internetGateway: false
+    enableDnsHostnames: true
+    enableDnsSupport: true
+    instanceTenancy: default
+    routeTables:
+      - name: Network-Endpoints-Tgw-A
+        routes: []
+      - name: Network-Endpoints-Tgw-B
+        routes: []
+      - name: Network-Endpoints-A
+        routes:
+          - name: TgwRoute
+            destination: 0.0.0.0/0
+            type: transitGateway
+            target: Network-Main
+          - name: S3Gateway
+            type: gatewayEndpoint
+            target: s3
+          - name: DynamoDBGateway
+            type: gatewayEndpoint
+            target: dynamodb
+      - name: Network-Endpoints-B
+        routes:
+          - name: TgwRoute
+            destination: 0.0.0.0/0
+            type: transitGateway
+            target: Network-Main
+          - name: S3Gateway
+            type: gatewayEndpoint
+            target: s3
+          - name: DynamoDBGateway
+            type: gatewayEndpoint
+            target: dynamodb
+    subnets:
+      - name: Network-Endpoints-A
+        availabilityZone: a
+        routeTable: Network-Endpoints-A
+        ipv4CidrBlock: 10.1.0.0/24
+      - name: Network-Endpoints-B
+        availabilityZone: b
+        routeTable: Network-Endpoints-B
+        ipv4CidrBlock: 10.1.1.0/24
+      - name: Network-Endpoints-TgwAttach-A
+        availabilityZone: a
+        routeTable: Network-Endpoints-Tgw-A
+        ipv4CidrBlock: 10.1.3.208/28
+      - name: Network-Endpoints-TgwAttach-B
+        availabilityZone: b
+        routeTable: Network-Endpoints-Tgw-B
+        ipv4CidrBlock: 10.1.3.224/28
+    transitGatewayAttachments:
+      - name: Network-Endpoints
+        transitGateway:
+          name: Network-Main
+          account: Network-Prod
+        routeTableAssociations:
+          - Network-Main-Shared
+        routeTablePropagations:
+          - Network-Main-Core
+          - Network-Main-Segregated
+          - Network-Main-Shared
+          - Network-Main-Standalone
+        subnets:
+          - Network-Endpoints-TgwAttach-A
+          - Network-Endpoints-TgwAttach-B
+    gatewayEndpoints:
+      defaultPolicy: Default
+      endpoints:
+        - service: s3
+        - service: dynamodb
+    interfaceEndpoints:
+      central: true
+      defaultPolicy: Default
+      subnets:
+        - Network-Endpoints-A
+        - Network-Endpoints-B
+      endpoints:
+        - service: ec2
+        - service: ec2messages
+        - service: ssm
+        - service: ssmmessages
+        - service: kms
+        - service: logs
+  - name: Network-Inspection
+    account: Network-Prod
+    region: {{AcceleratorHomeRegion}}
+    cidrs:
+      - 10.2.0.0/22
+    defaultSecurityGroupRulesDeletion: true
+    routeTables:
+      - name: Network-Inspection-Tgw-A
+        routes: []
+      - name: Network-Inspection-Tgw-B
+        routes: []
+      - name: Network-Inspection-A
+        routes:
+          - name: TgwRoute
+            destination: 0.0.0.0/0
+            type: transitGateway
+            target: Network-Main
+          - name: S3Gateway
+            type: gatewayEndpoint
+            target: s3
+          - name: DynamoDBGateway
+            type: gatewayEndpoint
+            target: dynamodb
+      - name: Network-Inspection-B
+        routes:
+          - name: TgwRoute
+            destination: 0.0.0.0/0
+            type: transitGateway
+            target: Network-Main
+          - name: S3Gateway
+            type: gatewayEndpoint
+            target: s3
+          - name: DynamoDBGateway
+            type: gatewayEndpoint
+            target: dynamodb
+    subnets:
+      - name: Network-Inspection-A
+        availabilityZone: a
+        routeTable: Network-Inspection-A
+        ipv4CidrBlock: 10.2.0.0/24
+      - name: Network-Inspection-B
+        availabilityZone: b
+        routeTable: Network-Inspection-B
+        ipv4CidrBlock: 10.2.1.0/24
+      - name: Network-Inspection-TgwAttach-A
+        availabilityZone: a
+        routeTable: Network-Inspection-Tgw-A
+        ipv4CidrBlock: 10.2.3.208/28
+      - name: Network-Inspection-TgwAttach-B
+        availabilityZone: b
+        routeTable: Network-Inspection-Tgw-B
+        ipv4CidrBlock: 10.2.3.224/28
+      - name: Network-Inspection-Firewall-A
+        availabilityZone: a
+        routeTable: Network-Inspection-A
+        ipv4CidrBlock: 10.2.3.0/28
+      - name: Network-Inspection-Firewall-B
+        availabilityZone: b
+        routeTable: Network-Inspection-B
+        ipv4CidrBlock: 10.2.3.16/28
+    transitGatewayAttachments:
+      - name: Network-Inspection
+        transitGateway:
+          name: Network-Main
+          account: Network-Prod
+        options:
+          applianceModeSupport: enable
+        routeTableAssociations:
+          - Network-Main-Shared
+        routeTablePropagations: []
+        subnets:
+          - Network-Inspection-TgwAttach-A
+          - Network-Inspection-TgwAttach-B
+    gatewayEndpoints:
+      defaultPolicy: Default
+      endpoints:
+        - service: s3
+        - service: dynamodb
+    useCentralEndpoints: true
+  - name: EIS-Prod
+    tags:
+      - key: Name
+        value: EIS-Prod
+    account: EIS-Prod
+    region: {{AcceleratorHomeRegion}}
+    cidrs:
+      - 10.3.0.0/16
+    defaultSecurityGroupRulesDeletion: true
+    routeTables:
+      - name: EIS-Prod-Tgw-A
+        routes: []
+      - name: EIS-Prod-Tgw-B
+        routes: []
+      - name: EIS-Prod-App-A
+        routes:
+          - name: TgwRoute
+            destination: 0.0.0.0/0
+            type: transitGateway
+            target: Network-Main
+          - name: S3Gateway
+            type: gatewayEndpoint
+            target: s3
+          - name: DynamoDBGateway
+            type: gatewayEndpoint
+            target: dynamodb
+      - name: EIS-Prod-App-B
+        routes:
+          - name: TgwRoute
+            destination: 0.0.0.0/0
+            type: transitGateway
+            target: Network-Main
+          - name: S3Gateway
+            type: gatewayEndpoint
+            target: s3
+          - name: DynamoDBGateway
+            type: gatewayEndpoint
+            target: dynamodb
+    subnets:
+      - name: EIS-Prod-App-A
+        availabilityZone: a
+        routeTable: EIS-Prod-App-A
+        ipv4CidrBlock: 10.3.0.0/24
+      - name: EIS-Prod-App-B
+        availabilityZone: b
+        routeTable: EIS-Prod-App-B
+        ipv4CidrBlock: 10.3.1.0/24
+      - name: EIS-ProdTgwAttach-A
+        availabilityZone: a
+        routeTable: EIS-Prod-Tgw-A
+        ipv4CidrBlock: 10.3.255.208/28
+      - name: EIS-ProdTgwAttach-B
+        availabilityZone: b
+        routeTable: EIS-Prod-Tgw-B
+        ipv4CidrBlock: 10.3.255.224/28
+    transitGatewayAttachments:
+      - name: EIS-Prod
+        transitGateway:
+          name: Network-Main
+          account: Network-Prod
+        routeTableAssociations:
+          - Network-Main-Segregated
+        routeTablePropagations:
+          - Network-Main-Core
+          - Network-Main-Shared
+        subnets:
+          - EIS-ProdTgwAttach-A
+          - EIS-ProdTgwAttach-B
+    gatewayEndpoints:
+      defaultPolicy: Default
+      endpoints:
+        - service: s3
+        - service: dynamodb
+    useCentralEndpoints: true
+  - name: HIS-Dev
+    tags:
+      - key: Name
+        value: HIS-Dev
+    account: HIS-Dev
+    region: {{AcceleratorHomeRegion}}
+    cidrs:
+      - 10.4.0.0/16
+    defaultSecurityGroupRulesDeletion: true
+    routeTables:
+      - name: HIS-Dev-Tgw-A
+        routes: []
+      - name: HIS-Dev-Tgw-B
+        routes: []
+      - name: HIS-Dev-App-A
+        routes:
+          - name: TgwRoute
+            destination: 0.0.0.0/0
+            type: transitGateway
+            target: Network-Main
+          - name: S3Gateway
+            type: gatewayEndpoint
+            target: s3
+          - name: DynamoDBGateway
+            type: gatewayEndpoint
+            target: dynamodb
+      - name: HIS-Dev-App-B
+        routes:
+          - name: TgwRoute
+            destination: 0.0.0.0/0
+            type: transitGateway
+            target: Network-Main
+          - name: S3Gateway
+            type: gatewayEndpoint
+            target: s3
+          - name: DynamoDBGateway
+            type: gatewayEndpoint
+            target: dynamodb
+    subnets:
+      - name: HIS-Dev-App-A
+        availabilityZone: a
+        routeTable: HIS-Dev-App-A
+        ipv4CidrBlock: 10.4.0.0/24
+      - name: HIS-Dev-App-B
+        availabilityZone: b
+        routeTable: HIS-Dev-App-B
+        ipv4CidrBlock: 10.4.1.0/24
+      - name: HIS-DevTgwAttch-A
+        availabilityZone: a
+        routeTable: HIS-Dev-Tgw-A
+        ipv4CidrBlock: 10.4.255.208/28
+      - name: HIS-DevTgwAttch-B
+        availabilityZone: b
+        routeTable: HIS-Dev-Tgw-B
+        ipv4CidrBlock: 10.4.255.224/28
+    transitGatewayAttachments:
+      - name: HIS-Dev
+        transitGateway:
+          name: Network-Main
+          account: Network-Prod
+        routeTableAssociations:
+          - Network-Main-Segregated
+        routeTablePropagations:
+          - Network-Main-Core
+          - Network-Main-Shared
+        subnets:
+          - HIS-DevTgwAttch-A
+          - HIS-DevTgwAttch-B
+    gatewayEndpoints:
+      defaultPolicy: Default
+      endpoints:
+        - service: s3
+        - service: dynamodb
+    useCentralEndpoints: true
+
+##############################################################
+# Global configuration for VPC flow logs                     #
+# Where there is no flow log configuration defined with VPC  #
+# this configuration will be used for flow log configuration #
+##############################################################
+vpcFlowLogs:
+  trafficType: ALL
+  maxAggregationInterval: 600
+  destinations:
+    - s3
+    - cloud-watch-logs
+  destinationsConfig:
+    cloudWatchLogs:
+      retentionInDays: 30
+    s3:
+      lifecycleRules:
+        - enabled: true
+          abortIncompleteMultipartUpload: 7
+          expiration: 30
+          noncurrentVersionExpiration: 30
+  defaultFormat: false
+  customFields:
+    - version
+    - account-id
+    - interface-id
+    - srcaddr
+    - dstaddr
+    - srcport
+    - dstport
+    - protocol
+    - packets
+    - bytes
+    - start
+    - end
+    - action
+    - log-status
+    - vpc-id
+    - subnet-id
+    - instance-id
+    - tcp-flags
+    - type
+    - pkt-srcaddr
+    - pkt-dstaddr
+    - region
+    - az-id
+    - pkt-src-aws-service
+    - pkt-dst-aws-service
+    - flow-direction
+    - traffic-path
