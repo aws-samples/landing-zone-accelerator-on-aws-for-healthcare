@@ -2,7 +2,7 @@
 	"Version": "2012-10-17",
 	"Statement": [
 		{
-			"Sid": "HIPAAEligibleServices20241017",
+			"Sid": "HIPAAEligibleServices20241208",
 			"Effect": "Deny",
 			"NotAction": [
 				"a4b:*",
@@ -147,6 +147,7 @@
 				"redshift:*",
 				"rekognition:*",
 				"resiliencehub:*",
+				"resource-explorer-2:*",
 				"resource-explorer:*",
 				"resource-groups:*",
 				"robomaker:*",
@@ -154,6 +155,7 @@
 				"route53domains:*",
 				"route53resolver:*",
 				"s3:*",
+				"s3express:*",
 				"sagemaker:*",
 				"secretsmanager:*",
 				"securityhub:*",
@@ -179,6 +181,7 @@
 				"supportplans:*",
 				"swf:*",
 				"textract:*",
+				"thinclient:*",
 				"timestream:*",
 				"transcribe:*",
 				"transfer:*",
