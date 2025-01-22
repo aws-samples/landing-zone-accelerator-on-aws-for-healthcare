@@ -67,9 +67,16 @@ Using the IDE of your choice, in your local `aws-accelerator-config` repo, updat
 
 If you are changing the home region from _us-east-1_ to different region, you need to make the following configuration file modifications.
 
-- global-config.yaml - **homeRegion: &HOME_REGION us-east-1** must be updated from _us-east-1_ to the region you are using as your home region, e.g. _homeRegion: &HOME_REGION us-west-2_
-- networking-config.yaml - **homeRegion: &HOME_REGION us-east-1** must be updated from _us-east-1_ to the region you are using as your home region
-- security-config.yaml - **homeRegion: &HOME_REGION us-east-1** must be updated from _us-east-1_ to the region you are using as your home region
+- global-config.yaml
+  - **homeRegion: &HOME_REGION us-east-1** must be updated from _us-east-1_ to the region you are using as your home region (e.g. _homeRegion: &HOME_REGION us-west-2_)
+- networking-config.yaml
+  - **homeRegion: &HOME_REGION us-east-1** must be updated from _us-east-1_ to the region you are using as your home region
+- security-config.yaml
+  - **homeRegion: &HOME_REGION us-east-1** must be updated from _us-east-1_ to the region you are using as your home region
+  - Several included AWS Config rules are only available in US East (_us-east-1_) region and must be commented out or removed.
+    - [cloudfront-origin-access-identity-enabled](https://docs.aws.amazon.com/config/latest/developerguide/cloudfront-origin-access-identity-enabled.html)
+    - [cloudfront-security-policy-check](https://docs.aws.amazon.com/config/latest/developerguide/cloudfront-security-policy-check.html)
+    - [shield-drt-access](https://docs.aws.amazon.com/config/latest/developerguide/shield-drt-access.html)
 
 #### 2.5.1.b Changing the accelerator prefix
 
