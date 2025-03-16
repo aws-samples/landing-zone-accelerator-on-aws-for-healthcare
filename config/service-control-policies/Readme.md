@@ -2,7 +2,7 @@
 
 baseline-guardrails-hipaa.json file contains the Service Control Policies (SCPs) that can be deployed while building HIPAA eligible environments.
 
-HIPAA Eligible Services are last updated on December 8, 2024.
+HIPAA Eligible Services are last updated on February 7, 2025.
 
 Here are some statistics about the SCPs:
 
@@ -147,7 +147,7 @@ AWS Resource Explorer \
 AWS RoboMaker \
 Amazon Route 53 \
 Amazon S3 Glacier \
-Amazon SageMaker [excludes Studio Lab, Ground Truth Plus, Public Workforce and Vendor Workforce for all features] \
+Amazon SageMaker AI [formerly Amazon Sagemaker, excludes Studio Lab, Ground Truth Plus, Public Workforce and Vendor Workforce for all features] \
 AWS Secrets Manager \
 AWS Security Hub \
 AWS Service Catalog \
