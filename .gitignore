@@ -1,5 +1,0 @@
-# ignore hidden and config files
-.DS_Store
-.git
-images/.DS_Store
-images/.gitkeep

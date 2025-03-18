@@ -2,15 +2,15 @@
 
 baseline-guardrails-hipaa.json file contains the Service Control Policies (SCPs) that can be deployed while building HIPAA eligible environments.
 
-HIPAA Eligible Services are last updated on December 8, 2024.
+HIPAA Eligible Services are last updated on October 17, 2024.
 
 Here are some statistics about the SCPs:
 
-- HIPAA Lookup Data Service Count: 165
-- HIPAAA Eligible Services API Count: 177
+- HIPAA Lookup Data Service Count: 163
+- HIPAA Eligible Services API Count: 174
 - Additional Services Count: 6
 - Additional Services API Count: 16
-- Total APIs in SCP: 193
+- Total APIs in SCP: 190
 
 The reference guide can be accessed via the following link: https://aws.amazon.com/compliance/hipaa-eligible-services-reference/
 
@@ -143,7 +143,6 @@ Amazon Redshift \
 Amazon Relational Database Service (Amazon RDS) [SQL Server, MySQL, Oracle, PostgreSQL, Db2 and MariaDB engines only] \
 AWS Resilience Hub \
 AWS Resource Access Manager (RAM) \
-AWS Resource Explorer \
 AWS RoboMaker \
 Amazon Route 53 \
 Amazon S3 Glacier \
@@ -156,7 +155,7 @@ AWS Shield [Standard and Advanced] \
 Amazon Simple Email Service (Amazon SES) \
 Amazon Simple Notification Service (SNS) \
 Amazon Simple Queue Service (SQS) \
-Amazon Simple Storage Service (S3) \
+Amazon Simple Storage Service (S3) [excludes S3 Express One Zone] \
 Amazon Simple Workflow Service (SWF) \
 AWS Snowball \
 AWS Snowball Edge \
@@ -176,7 +175,6 @@ AWS Wickr \
 Amazon WorkDocs [Excluding Adding Controls for Deleting Previous File Version Feature] \
 Amazon WorkLink \
 Amazon WorkSpaces \
-Amazon WorkSpaces Thin Client \
 Amazon WorkSpaces Secure Browser \
 AWS X-Ray \
 VM Import/Export \

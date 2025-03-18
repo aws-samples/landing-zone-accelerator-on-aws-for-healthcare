@@ -14,7 +14,7 @@ To support the LZA and reference architecture deployments, you will need to iden
 
 ## 1.1 Identify your home AWS Region
 
-The home AWS Region will be the Region in which you will most often operate in. The default region for the LZA for Healthcare sample configuration files is US East (N. Virginia)
+The home AWS Region will be the Region in which you will most often operate in.
 
 ## 1.2 Email addresses
 
