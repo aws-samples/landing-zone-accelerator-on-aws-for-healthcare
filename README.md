@@ -35,13 +35,13 @@ These controls are created as detective or preventative guardrails in the AWS en
 In the `security-config.yaml` file, AWS security services can be configured such as AWS Config, AWS Security Hub, and enabling storage encryption. Additional alarms and metrics have been provided to inform you of actions within your AWS Cloud environment. For a list of all of the services and settings that can be configured, see the [LZA on AWS Implementation Guide](#references) in the references section below. This file also contains the AWS Config rules that make up the list of detective guardrails used to meet many of the controls from the various frameworks. These rules are implemented through a combination of AWS services:
 
 - AWS Security Hub
-  - AWS Foundational Security Best Practices
+  - AWS Foundational Security Best Practices v1.0.0
   - CIS AWS Foundations Benchmark v1.4.0
   - NIST Special Publication 800-53 Revision 5
 - AWS Config
   - Rules included in the [Operational Best Practices for HIPAA Security](https://docs.aws.amazon.com/config/latest/developerguide/operational-best-practices-for-hipaa_security.html) sample conformance pack.
 - AWS Audit Manager
-  - Rules included in the [HIPAA Omnibus Final Rule](https://docs.aws.amazon.com/audit-manager/latest/userguide/HIPAA-omnibus-rule.html) prebuilt standard framework.
+  - Rules included in the [HIPAA Security Rule: Feb 2003](https://docs.aws.amazon.com/audit-manager/latest/userguide/HIPAA.html) and [HIPAA Omnibus Final Rule](https://docs.aws.amazon.com/audit-manager/latest/userguide/HIPAA-omnibus-rule.html) prebuilt standard frameworks.
 
 The `global-config.yaml` file contains the settings that enable regions, centralized logging using AWS CloudTrail and Amazon CloudWatch Logs and the retention period for those logs to help you meet your specific auditing and monitoring needs.
 
@@ -110,7 +110,7 @@ The `Infrastructure` OU provides the following specialized functions:
 
 ## Cost
 
-You are responsible for the cost of the AWS services used while running this solution. As of September 2022, the cost for running this solution using the Landing Zone Accelerator with the healthcare configuration files and AWS Control Tower in the US East (N. Virginia) Region within a test environment with no active workloads is between $1000-$1,1250 USD per month. As additional AWS services and workloads are deployed, the cost will increase. It is also noteworthy VPC inspection is approximately 60% of the cost of this configuration. While this is a significant percentage, the ability to inspect and control network traffic in enviroment is an important capability for improving your overall security posture.
+You are responsible for the cost of the AWS services used while running this solution. As of September 2022, the cost for running this solution using the Landing Zone Accelerator with the healthcare configuration files and AWS Control Tower in the US East (N. Virginia) Region within a test environment with no active workloads is between $400-$500 USD per month. As additional AWS services and workloads are deployed, the cost will increase.
 
 | AWS Service                                      | Cost per month |
 | ------------------------------------------------ | -------------- |
@@ -173,4 +173,12 @@ This library is licensed under the MIT-0 License. See the [LICENSE](LICENSE) fil
 ## Release Version History
 ### v1.9.0-a - 10/31/2024
 - Changes: This release had been tested using LZA v1.9.0
+- Bug fixes: None
+
+### v1.9.0-b - 3/16/2205
+- Changes: 
+  - Updates to this README.md to reflect reduced configuration cost - as inspection networking is not included by default.
+  - Updates to 1-prereqs.md and 2-install.md with additional guidance about home_region setting.
+  - Updates to config-summary.md to reflect config rules implemented.
+  - Updates config/service-control-policies/scp-hcl-hipaa-service.json and config/service-control-policies/Readme.md to reflect HIPAA Eligible Services list changes as of 12/2024.
 - Bug fixes: None
