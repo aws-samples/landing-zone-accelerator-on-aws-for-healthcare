@@ -174,3 +174,11 @@ This library is licensed under the MIT-0 License. See the [LICENSE](LICENSE) fil
 ### v1.9.0-a - 10/31/2024
 - Changes: This release had been tested using LZA v1.9.0
 - Bug fixes: None
+
+### v1.9.0-b - 3/16/2205
+- Changes: 
+  - Updates to this README.md to reflect reduced configuration cost - as inspection networking is not included by default.
+  - Updates to 1-prereqs.md and 2-install.md with additional guidance about home_region setting.
+  - Updates to config-summary.md to reflect config rules implemented.
+  - Updates config/service-control-policies/scp-hcl-hipaa-service.json and config/service-control-policies/Readme.md to reflect HIPAA Eligible Services list changes as of 12/2024.
+- Bug fixes: None
