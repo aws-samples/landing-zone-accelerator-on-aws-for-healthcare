@@ -44,7 +44,7 @@ centralSecurityServices:
           - storageClass: GLACIER_IR
             transitionAfter: 365
   auditManager:
-    enable: true
+    enable: false
     excludeRegions: []
     defaultReportsConfiguration:
       enable: true
