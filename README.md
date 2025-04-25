@@ -175,7 +175,7 @@ This library is licensed under the MIT-0 License. See the [LICENSE](LICENSE) fil
 - Changes: This release had been tested using LZA v1.9.0
 - Bug fixes: None
 
-### v1.9.0-b - 3/16/2205
+### v1.9.0-b - 3/16/2025
 - Changes: 
   - Updates to this README.md to reflect reduced configuration cost - as inspection networking is not included by default.
   - Updates to 1-prereqs.md and 2-install.md with additional guidance about home_region setting.
