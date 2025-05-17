@@ -2,7 +2,7 @@
 	"Version": "2012-10-17",
 	"Statement": [
 		{
-			"Sid": "HIPAAEligibleServices20250207",
+			"Sid": "HIPAAEligibleServices20250319",
 			"Effect": "Deny",
 			"NotAction": [
 				"a4b:*",
@@ -11,6 +11,7 @@
 				"acm:*",
 				"airflow:*",
 				"amplify:*",
+				"aoss:*",
 				"apigateway:*",
 				"appfabric:*",
 				"appflow:*",
@@ -131,6 +132,7 @@
 				"opsworks-cm:*",
 				"opsworks:*",
 				"organizations:*",
+				"osis:*",
 				"outposts:*",
 				"personalize:*",
 				"polly:*",
@@ -170,6 +172,7 @@
 				"ssm-contacts:*",
 				"ssm-guiconnect:*",
 				"ssm-incidents:*",
+				"ssm-quicksetup:*",
 				"ssm:*",
 				"ssmmessages:*",
 				"sso-directory:*",
