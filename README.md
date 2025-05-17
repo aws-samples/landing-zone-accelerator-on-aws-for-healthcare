@@ -182,3 +182,19 @@ This library is licensed under the MIT-0 License. See the [LICENSE](LICENSE) fil
   - Updates to config-summary.md to reflect config rules implemented.
   - Updates config/service-control-policies/scp-hcl-hipaa-service.json and config/service-control-policies/Readme.md to reflect HIPAA Eligible Services list changes as of 12/2024.
 - Bug fixes: None
+
+
+### v1.9.0-c - 5/17/2025
+- Changes: 
+  - 2/2025
+    - Changes SCP Readme to reflect SageMaker service name change.
+    - "Amazon SageMaker [excludes Studio Lab, Ground Truth Plus, Public Workforce and Vendor Workforce for all features]" --> "Amazon SageMaker AI [formerly Amazon Sagemaker, excludes Studio Lab, Ground Truth Plus, Public Workforce and Vendor Workforce for all features]"
+  - 3/2025
+    - Added "AWS Fargate [ECS and EKS engines only]" . 
+    - Added additional OpenSearch and SSM APIs.
+    - Added opensearch ingestion and opensearch serverless (apis osis:* and aoss:*).
+    - Added sms quicksetup (api ssm-quickstetup:*).
+  - Add Tools Monitoring / Telemetry. 
+        - APIs pi:* and applicationinsights:*
+  - Update to reflect 4/16/2025 HIPAA Eligible Services List 
+- Bug fixes: None

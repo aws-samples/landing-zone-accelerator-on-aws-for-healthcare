@@ -3,3 +3,4 @@
 .git
 images/.DS_Store
 images/.gitkeep
+.vscode/*
