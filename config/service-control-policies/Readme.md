@@ -2,15 +2,15 @@
 
 baseline-guardrails-hipaa.json file contains the Service Control Policies (SCPs) that can be deployed while building HIPAA eligible environments.
 
-HIPAA Eligible Services are last updated on March 19, 2025.
+HIPAA Eligible Services are last updated on April 16, 2025.
 
 Here are some statistics about the SCPs:
 
 - HIPAA Lookup Data Service Count: 166
 - HIPAAA Eligible Services API Count: 180
-- Additional Services Count: 6
-- Additional Services API Count: 16
-- Total APIs in SCP: 196
+- Additional Services Count: 7
+- Additional Services API Count: 18
+- Total APIs in SCP: 198
 
 The reference guide can be accessed via the following link: https://aws.amazon.com/compliance/hipaa-eligible-services-reference/
 
@@ -223,3 +223,8 @@ The featured scp-hcl-hipaa-service.json includes APIs for other tools / services
 - "apiname": "support:\*"
 - "apiname": "supportplans:\*"
 - "apiname": "trustedadvisor:\*"
+
+### Service Catagory - Monitoring / Telemetry
+
+- "apiname": "pi:\*"
+- "apiname": "applicationinsights:\*"
