@@ -20,7 +20,7 @@ The **Landing Zone Accelerator (LZA) for Healthcare** is an industry specific de
 
 ## Security Frameworks
 
-The healthcare industry is high regulated. The LZA for Healthcare provides additional guardrails to help mitigate against the threats faced by healthcare customers. The LZA for Healthcare is not meant to be feature complete for fully compliant, but rather is intended to help accelerate cloud migrations and cloud refactoring efforts by organizations serving the healthcare industry. While much effort has been made to reduce the effort required to manually build a production-ready infrastructure, you will still need to tailor it to your unique business needs.
+The healthcare industry is highly regulated. The LZA for Healthcare provides additional guardrails to help mitigate against the threats faced by healthcare customers. The LZA for Healthcare is not meant to be feature complete for fully compliant, but rather is intended to help accelerate cloud migrations and cloud refactoring efforts by organizations serving the healthcare industry. While much effort has been made to reduce the effort required to manually build a production-ready infrastructure, you will still need to tailor it to your unique business needs.
 
 This solution includes controls from frameworks in various geographies, including HIPAA, NCSC, ENS High, C5, and Fascicolo Sanitario Elettronico. If you are deploying the Landing Zone Accelerator on AWS for Healthcare solution, please consult with your AWS team to understand controls to meet your requirements.
 
@@ -183,7 +183,6 @@ This library is licensed under the MIT-0 License. See the [LICENSE](LICENSE) fil
   - Updates config/service-control-policies/scp-hcl-hipaa-service.json and config/service-control-policies/Readme.md to reflect HIPAA Eligible Services list changes as of 12/2024.
 - Bug fixes: None
 
-
 ### v1.9.0-c - 5/17/2025
 - Changes: 
   - 2/2025
@@ -197,4 +196,12 @@ This library is licensed under the MIT-0 License. See the [LICENSE](LICENSE) fil
   - Add Tools Monitoring / Telemetry. 
         - APIs pi:* and applicationinsights:*
   - Update to reflect 4/16/2025 HIPAA Eligible Services List 
+- Bug fixes: None
+
+### v1.9.0-d - 6/17/2025
+- Changes: 
+  - 6/2025
+    - Renames AWS Security Hub to AWS Security Hub CSPM (formerly AWS Security Hub)
+    - Adds tool API qdeveloper:*
+    - Fixes type in main README "high regulated" to "highly regulated"
 - Bug fixes: None

@@ -2,7 +2,7 @@
 	"Version": "2012-10-17",
 	"Statement": [
 		{
-			"Sid": "HIPAAEligibleServices20250416",
+			"Sid": "HIPAAEligibleServices20250617",
 			"Effect": "Deny",
 			"NotAction": [
 				"a4b:*",
@@ -140,6 +140,7 @@
 				"polly:*",
 				"pricing:*",
 				"qbusiness:*",
+				"qdeveloper:*",
 				"qldb:*",
 				"quicksight:*",
 				"ram:*",
