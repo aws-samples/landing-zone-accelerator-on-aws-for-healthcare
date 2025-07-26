@@ -20,7 +20,7 @@ The **Landing Zone Accelerator (LZA) for Healthcare** is an industry specific de
 
 ## Security Frameworks
 
-The healthcare industry is high regulated. The LZA for Healthcare provides additional guardrails to help mitigate against the threats faced by healthcare customers. The LZA for Healthcare is not meant to be feature complete for fully compliant, but rather is intended to help accelerate cloud migrations and cloud refactoring efforts by organizations serving the healthcare industry. While much effort has been made to reduce the effort required to manually build a production-ready infrastructure, you will still need to tailor it to your unique business needs.
+The healthcare industry is highly regulated. The LZA for Healthcare provides additional guardrails to help mitigate against the threats faced by healthcare customers. The LZA for Healthcare is not meant to be feature complete for fully compliant, but rather is intended to help accelerate cloud migrations and cloud refactoring efforts by organizations serving the healthcare industry. While much effort has been made to reduce the effort required to manually build a production-ready infrastructure, you will still need to tailor it to your unique business needs.
 
 This solution includes controls from frameworks in various geographies, including HIPAA, NCSC, ENS High, C5, and Fascicolo Sanitario Elettronico. If you are deploying the Landing Zone Accelerator on AWS for Healthcare solution, please consult with your AWS team to understand controls to meet your requirements.
 
