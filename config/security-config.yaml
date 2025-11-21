@@ -4,7 +4,7 @@
 # https://awslabs.github.io/landing-zone-accelerator-on-aws/classes/_aws_accelerator_config.SecurityConfig.html  #
 ##################################################################################################################
 
-homeRegion: &HOME_REGION us-east-1
+homeRegion: "{{AcceleratorHomeRegion}}"
 centralSecurityServices:
   delegatedAdminAccount: Audit
   ebsDefaultVolumeEncryption:
@@ -538,7 +538,7 @@ awsConfig:
 cloudWatch:
   metricSets:
     - regions:
-        - {{AcceleratorHomeRegion}}
+        - "{{AcceleratorHomeRegion}}"
       #####################################
       # With landing zone version 3.0, AWS Control Tower now supports organization-level AWS CloudTrail trails.                                          #
       # Going forward from landing zone 3.0, AWS Control Tower no longer will support account-level trails that AWS manages.                             #
@@ -643,7 +643,7 @@ cloudWatch:
           metricValue: "1"
   alarmSets:
     - regions:
-        - {{AcceleratorHomeRegion}}
+        - "{{AcceleratorHomeRegion}}"
       #####################################
       # With landing zone version 3.0, AWS Control Tower now supports organization-level AWS CloudTrail trails.                                          #
       # Going forward from landing zone 3.0, AWS Control Tower no longer will support account-level trails that AWS manages.                             #
