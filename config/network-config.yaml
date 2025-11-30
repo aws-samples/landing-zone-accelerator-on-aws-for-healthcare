@@ -3,7 +3,7 @@
 # please review our network configuration reference in our README.md:             #
 # https://github.com/awslabs/landing-zone-accelerator-on-aws/blob/main/README.md  #
 ###################################################################################
-homeRegion: &HOME_REGION us-east-1
+homeRegion: "{{AcceleratorHomeRegion}}"
 #####################################
 # Delete default VPCs-- use this    #
 # object to delete default VPCs in  #
@@ -20,7 +20,7 @@ defaultVpc:
 transitGateways:
   - name: Network-Main
     account: Network-Prod
-    region: {{AcceleratorHomeRegion}}
+    region: "{{AcceleratorHomeRegion}}"
     shareTargets:
       organizationalUnits:
         - Infrastructure/Infra-Prod
@@ -65,7 +65,7 @@ endpointPolicies:
 vpcs:
   - name: Network-Endpoints
     account: Network-Prod
-    region: {{AcceleratorHomeRegion}}
+    region: "{{AcceleratorHomeRegion}}"
     cidrs:
       - 10.1.0.0/22
     defaultSecurityGroupRulesDeletion: true
@@ -154,7 +154,7 @@ vpcs:
         - service: logs
   - name: Network-Inspection
     account: Network-Prod
-    region: {{AcceleratorHomeRegion}}
+    region: "{{AcceleratorHomeRegion}}"
     cidrs:
       - 10.2.0.0/22
     defaultSecurityGroupRulesDeletion: true
@@ -236,7 +236,7 @@ vpcs:
       - key: Name
         value: EIS-Prod
     account: EIS-Prod
-    region: {{AcceleratorHomeRegion}}
+    region: "{{AcceleratorHomeRegion}}"
     cidrs:
       - 10.3.0.0/16
     defaultSecurityGroupRulesDeletion: true
@@ -310,7 +310,7 @@ vpcs:
       - key: Name
         value: HIS-Dev
     account: HIS-Dev
-    region: {{AcceleratorHomeRegion}}
+    region: "{{AcceleratorHomeRegion}}"
     cidrs:
       - 10.4.0.0/16
     defaultSecurityGroupRulesDeletion: true
