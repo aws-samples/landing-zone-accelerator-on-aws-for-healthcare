@@ -2,7 +2,7 @@
 	"Version": "2012-10-17",
 	"Statement": [
 		{
-			"Sid": "HIPAAEligibleServices20250617",
+			"Sid": "HIPAAEligibleServices20251117",
 			"Effect": "Deny",
 			"NotAction": [
 				"a4b:*",
@@ -30,6 +30,7 @@
 				"backup:*",
 				"batch:*",
 				"bcm-data-exports:*",
+				"bedrock-agentcore:*",
 				"bedrock:*",
 				"budgets:*",
 				"cassandra:*",
@@ -68,6 +69,7 @@
 				"docdb-elastic:*",
 				"drs:*",
 				"ds:*",
+				"dsql:*",
 				"dynamodb:*",
 				"ebs:*",
 				"ec2:*",
@@ -135,6 +137,7 @@
 				"organizations:*",
 				"osis:*",
 				"outposts:*",
+				"pcs:*",
 				"personalize:*",
 				"pi:*",
 				"polly:*",
@@ -155,7 +158,6 @@
 				"resource-explorer-2:*",
 				"resource-explorer:*",
 				"resource-groups:*",
-				"robomaker:*",
 				"route53:*",
 				"route53domains:*",
 				"route53resolver:*",
@@ -186,6 +188,7 @@
 				"support:*",
 				"supportplans:*",
 				"swf:*",
+				"tag:*",
 				"textract:*",
 				"thinclient:*",
 				"timestream:*",

@@ -2,15 +2,15 @@
 
 baseline-guardrails-hipaa.json file contains the Service Control Policies (SCPs) that can be deployed while building HIPAA eligible environments.
 
-HIPAA Eligible Services are last updated on June 17, 2025.
+HIPAA Eligible Services are last updated on November 17, 2025.
 
 Here are some statistics about the SCPs:
 
-- HIPAA Lookup Data Service Count: 166
-- HIPAAA Eligible Services API Count: 180
-- Additional Services Count: 7
-- Additional Services API Count: 18
-- Total APIs in SCP: 198
+- HIPAA Lookup Data Service Count: 167
+- HIPAAA Eligible Services API Count: 182
+- Additional Services Count: 9
+- Additional Services API Count: 20
+- Total APIs in SCP: 202
 
 The reference guide can be accessed via the following link: https://aws.amazon.com/compliance/hipaa-eligible-services-reference/
 
@@ -22,7 +22,6 @@ AWS App Mesh \
 AWS AppFabric \
 Amazon AppFlow \
 AWS Application Migration Service \
-Amazon AppStream 2.0 \
 AWS AppSync \
 Amazon Athena \
 AWS Audit Manager \
@@ -32,6 +31,7 @@ AWS B2B Data Interchange \
 AWS Backup \
 AWS Batch \
 Amazon Bedrock \
+Amazon Bedrock AgentCore \
 AWS Certificate Manager \
 Amazon Chime \
 Amazon Chime SDK \
@@ -132,20 +132,20 @@ AWS OpsWorks for Puppet Enterprise \
 AWS OpsWorks Stacks \
 AWS Organizations \
 AWS Outposts \
+AWS Parallel Computing Service (PCS) \
 Amazon Personalize \
 Amazon Pinpoint and End User Messaging (formerly Amazon Pinpoint) [excluding Voice Message capabilities and WhatsApp Channel] \
 Amazon Polly \
 AWS Private Certificate Authority \
 Amazon Q Business \
 Amazon Quantum Ledger Database (QLDB) \
-Amazon QuickSight \
+Amazon Quick Suite [formerly Amazon QuickSight] \
 Amazon Rekognition \
 Amazon Redshift \
 Amazon Relational Database Service (Amazon RDS) [SQL Server, MySQL, Oracle, PostgreSQL, Db2 and MariaDB engines only] \
 AWS Resilience Hub \
 AWS Resource Access Manager (RAM) \
 AWS Resource Explorer \
-AWS RoboMaker \
 Amazon Route 53 \
 Amazon S3 Glacier \
 Amazon SageMaker AI [formerly Amazon Sagemaker, excludes Studio Lab, Ground Truth Plus, Public Workforce and Vendor Workforce for all features] \
@@ -166,7 +166,7 @@ AWS Storage Gateway \
 AWS Systems Manager \
 Amazon Textract \
 Amazon Timestream \
-AWS Transcribe \
+AWS Transcribe [Includes Healthscribe] \
 AWS Transfer Family \
 Amazon Translate \
 AWS Verified Access \
@@ -177,6 +177,7 @@ AWS Wickr \
 Amazon WorkDocs [Excluding Adding Controls for Deleting Previous File Version Feature] \
 Amazon WorkLink \
 Amazon WorkSpaces \
+Amazon WorkSpaces Applications [formerly known as Amazon AppStream 2.0] \
 Amazon WorkSpaces Thin Client \
 Amazon WorkSpaces Secure Browser \
 AWS X-Ray \
@@ -216,7 +217,9 @@ The featured scp-hcl-hipaa-service.json includes APIs for other tools / services
 ### Service Catagory - Resource Management
 
 - "apiname": "resource-groups:\*"
-- "apiname": "resource-explorer:\*",
+- "apiname": "resource-explorer:\*"
+- "apiname": "tag:\*"
+
 
 ### Service Catagory - Support
 

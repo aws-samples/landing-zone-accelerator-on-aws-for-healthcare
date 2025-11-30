@@ -205,3 +205,17 @@ This library is licensed under the MIT-0 License. See the [LICENSE](LICENSE) fil
     - Adds tool API qdeveloper:*
     - Fixes type in main README "high regulated" to "highly regulated"
 - Bug fixes: None
+
+### v1.9.0-e - 11/29/2025
+- Changes: 
+  - 11/2025
+    - Add "Amazon Bedrock AgentCore" - bedrock-agentcore:*
+    - Add "AWS Parallel Computing Service (PCS)" - pcs:*
+    - Add "Aurora DSQL" api  - dsql:*
+    - Rename "Amazon QuickSight" to "Amazon Quick Suite [formerly Amazon QuickSight]" - api remains quicksight:*
+    - Update AWS Transcribe to "AWS Transcribe [Includes Healthscribe]" - api remains transcribe:*
+    - Rename "Amazon AppStream 2.0" to "Amazon WorkSpaces Applications [formerly known as Amazon AppStream 2.0]" - api remains appstream:*
+    - Adds tool "Resource Group Tagging" - api tag:*
+    - Adds tool "Tag Editor" - api resource-explorer:*
+    - Remove "AWS RoboMaker" - api robomaker:*
+- Bug fixes: None
