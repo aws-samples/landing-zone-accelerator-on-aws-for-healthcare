@@ -15,8 +15,7 @@ For new LZA deployments, the recommended starting point is the **Universal Confi
 | Resource | Purpose |
 |----------|---------|
 | [LZA Universal Configuration](https://github.com/aws/lza-universal-configuration) | Current recommended baseline configuration for LZA deployments |
-| [Universal Configuration Docs](https://github.com/aws/lza-universal-configuration/tree/main/docs) | Documentation and guidance for the universal config |
-| [Landing Zone Accelerator on AWS](https://github.com/awslabs/landing-zone-accelerator-on-aws) | The LZA solution itself |
+| [LZA Universal Configuration Docs](https://github.com/aws/lza-universal-configuration/tree/main/docs) | Documentation and guidance for the universal config |
 
 ### HIPAA-Eligible Services SCP
 
@@ -25,10 +24,6 @@ This repository included a Service Control Policy that restricts usage to AWS se
 ➡️ [Service Control Policy Examples — Services in Scope for Compliance](https://github.com/aws-samples/service-control-policy-examples/tree/main/Services-in-scope-compliance)
 
 Use the version in that repository rather than the copy in this repo's `archived-content/` directory.
-
-### Industry-Specific Guidance
-
-Industry-specific documentation for the Universal Configuration is under development. For reference on how region and industry guidance is structured, see the [US Federal guidance](https://github.com/aws/lza-universal-configuration/tree/main/docs/08-Region-and-Industry-Guidance) as a pattern for what healthcare guidance will follow.
 
 ## Archived Content
 
